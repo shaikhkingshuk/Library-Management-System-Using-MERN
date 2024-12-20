@@ -1,0 +1,89 @@
+.page-view {
+  display: flex;
+  height: 100vh;
+  background-color: rgb(201, 204, 211);
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  background: linear-gradient(135deg, #f2f2f2, #d9d9d9);
+  border-radius: 12px;
+  width: 450px;
+  margin: 50px auto;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h1 {
+  font-size: 30px;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Form Group */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Labels */
+.form-group label {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 8px;
+  text-transform: capitalize;
+}
+
+/* Input Fields */
+.form-input {
+  padding: 12px 15px;
+  font-size: 15px;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  outline: none;
+  background-color: #ffffff;
+  transition: all 0.3s ease-in-out;
+}
+
+.form-input:focus {
+  border-color: #808080;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 5px rgba(128, 128, 128, 0.5);
+}
+
+/* Submit Button */
+.submit-button {
+  background: linear-gradient(135deg, #666666, #333333);
+  color: #fff;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.submit-button:hover {
+  background: linear-gradient(135deg, #333333, #666666);
+  transform: scale(1.05);
+}
+
+.submit-button:active {
+  transform: scale(0.98);
+}

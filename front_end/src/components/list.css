@@ -1,0 +1,125 @@
+*{
+  padding: 0px;
+  margin:0px;
+}
+.page-view {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 20%;
+  background-color: #7a7f84a2;
+  padding: 20px;
+  box-shadow: 2px 0 5px black;
+  border-radius: 20px;
+}
+
+.sidebar h2 {
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  text-decoration: none;
+  margin: 10px 0;
+  cursor: pointer;
+  color: black;
+}
+
+.sidebar ul li:hover {
+  text-decoration: none;
+  text-decoration: underline;
+}
+
+.no-underline{
+    text-decoration: none;
+    color:black;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+}
+
+.add-form {
+  margin-bottom: 20px;
+}
+
+.add-form input {
+  margin-right: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-form button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-form button:hover {
+  background-color: #0056b3;
+}
+
+.all-list {
+  list-style: none;
+  padding: 0;
+}
+
+.all-list li {
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+
+.all-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.all-table th, .all-table td {
+  border: 2px solid hsla(0, 1%, 23%, 0.227);
+  padding: 8px;
+  text-align: left;
+}
+
+.all-table th {
+  background-color: hwb(0 54% 46%);
+  font-weight: bold;
+}
+
+.all-table button {
+  margin-right: 5px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.all-table button:hover {
+  background-color: #0056b3;
+}
+
+.all-table button:last-child {
+  background-color: #dc3545;
+}
+
+.all-table button:last-child:hover {
+  background-color: #a71d2a;
+}
+
