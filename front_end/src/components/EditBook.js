@@ -20,7 +20,10 @@ const EditBook = () => {
       //console.log(bookValues);
       const response = await axios.put(
         `http://localhost:5000/updateBook/${id}`,
-        bookValues
+        bookValues,
+        {
+          withCredentials: true,
+        }
       );
       if (response.status === 200) {
         navigate("/book"); // after updating it will take to the bookList page

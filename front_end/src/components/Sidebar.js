@@ -1,14 +1,34 @@
 import React from "react";
 import "./list.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+
+  const handleClick = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/logout",
+        {}, /// must need to added or die in errors
+        {
+          withCredentials: true,
+        }
+      );
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="sidebar">
       <h2>User</h2>
       <ul>
         <li>
-          <Link to="/" className="no-underline">
+          <Link to="/user" className="no-underline">
             Add User
           </Link>
         </li>
@@ -42,6 +62,14 @@ const Sidebar = () => {
           <Link to="/search/book" className="no-underline">
             Search Book
           </Link>
+        </li>
+      </ul>
+      <h2>________</h2>
+      <ul>
+        <li>
+          <div className="btnn">
+            <button onClick={handleClick}>Logout</button>
+          </div>
         </li>
       </ul>
     </div>

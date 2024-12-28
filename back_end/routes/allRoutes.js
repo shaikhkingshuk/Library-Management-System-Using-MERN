@@ -15,36 +15,41 @@ const {
   deleteBook,
   updateBook,
   findBook,
+  loginManager,
+  logoutManager,
 } = require("../controllers/allControllers");
 const router = express.Router();
+const authMiddleware = require("../middleware/auth");
 
-router.get("/", function (req, res) {
-  res.send("hellow world!...");
-});
+/// Login/Logout Manager
+
+router.post("/login", loginManager);
+
+router.post("/logout", logoutManager);
 
 /// Add Managers
 
-router.post("/addManager", addManager);
+router.post("/addManager", authMiddleware, addManager);
 
-router.get("/allManager", allManager);
+router.get("/allManager", authMiddleware, allManager);
 
-router.delete("/deleteManager/:id", deleteManager);
+router.delete("/deleteManager/:id", authMiddleware, deleteManager);
 
-router.put("/updateManager/:id", updateManager);
+router.put("/updateManager/:id", authMiddleware, updateManager);
 
-router.get("/searchManager", findManager);
+router.get("/searchManager", authMiddleware, findManager);
 
 /// Add Users
 
-router.post("/addUser", addUser);
+router.post("/addUser", authMiddleware, addUser);
 
-router.get("/allUser", allUser);
+router.get("/allUser", authMiddleware, allUser);
 
-router.delete("/deleteUser/:id", deleteUser);
+router.delete("/deleteUser/:id", authMiddleware, deleteUser);
 
-router.put("/updateUser/:id", updateUser);
+router.put("/updateUser/:id", authMiddleware, updateUser);
 
-router.get("/searchUser", findUser);
+router.get("/searchUser", authMiddleware, findUser);
 
 /// Add Books
 

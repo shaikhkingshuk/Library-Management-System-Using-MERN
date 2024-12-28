@@ -20,7 +20,10 @@ const AddBook = ({ onBookAdded }) => {
     try {
       const response = await axios.post(
         "http://localhost:5000/addBook",
-        bookValues
+        bookValues,
+        {
+          withCredentials: true,
+        }
       );
       onBookAdded(response.data);
       //console.log(response);

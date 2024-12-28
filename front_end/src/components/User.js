@@ -10,7 +10,9 @@ const User = ({ newUser }) => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/allUser");
+      const response = await axios.get("http://localhost:5000/allUser", {
+        withCredentials: true,
+      });
       setUsers(response.data); // Set users state with API response
       setLoading(false);
     } catch (error) {
@@ -36,7 +38,9 @@ const User = ({ newUser }) => {
 
   const deleteUser = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/deleteUser/${id}`);
+      await axios.delete(`http://localhost:5000/deleteUser/${id}`, {
+        withCredentials: true,
+      });
       setUsers((prevUsers) => prevUsers.filter((user) => user._id !== id)); ///use to update the data instantly in the webpage without reloading the whole page
     } catch (error) {
       console.error("Error deleting user:", error);

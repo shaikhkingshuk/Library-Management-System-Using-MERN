@@ -22,7 +22,10 @@ const AddManager = ({ onManagerAdded }) => {
     try {
       const response = await axios.post(
         "http://localhost:5000/addManager",
-        managerValues
+        managerValues,
+        {
+          withCredentials: true,
+        }
       );
       onManagerAdded(response.data);
       //console.log(response);

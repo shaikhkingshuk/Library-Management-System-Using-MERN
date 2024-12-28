@@ -1,0 +1,115 @@
+/* General body styling */
+.main {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-image: url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Replace with your image URL */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Login container */
+.login-container {
+  width: 100%;
+  max-width: 400px;
+  height: auto; /* Allows content to determine height */
+  padding: 20px;
+  background: hwb(0 72% 28% / 0.821); /* Slight transparency */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px hsla(0, 0%, 36%, 0.938);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.inner-div{
+    padding: 10px;
+}
+/* Icon container styling */
+.icon-container {
+  font-size: 50px; /* Adjust size of the icon */
+  color: hsl(0, 0%, 0%); /* Icon color */
+  margin-bottom: 10px; /* Space below the icon */
+  text-align: center;
+  padding: 20px;
+}
+
+
+/* Login box */
+.login-box label{
+  width: 100%;
+  text-align: left;
+  font-weight: bold;
+}
+.login-box h2{
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Form title */
+.login-box h2 {
+  font-size: 24px;
+  color: hsl(0, 0%, 0%);
+  margin-bottom: 20px;
+}
+
+/* Input field styling */
+.login-box input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+
+/* Button styling */
+.login-box button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 60px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.login-box button:hover {
+  background-color: #0056b3;
+}
+
+/* Error message styling */
+.login-box p {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .login-container {
+    width: 90%;
+    max-width: 350px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-box h2 {
+    font-size: 20px;
+  }
+
+  .login-box input,
+  .login-box button {
+    font-size: 14px;
+  }
+}

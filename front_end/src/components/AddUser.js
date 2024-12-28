@@ -21,7 +21,10 @@ const AddUser = ({ onUserAdded }) => {
     try {
       const response = await axios.post(
         "http://localhost:5000/addUser",
-        userValues
+        userValues,
+        {
+          withCredentials: true,
+        }
       );
       onUserAdded(response.data);
       //console.log(response);

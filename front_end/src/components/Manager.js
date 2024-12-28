@@ -10,7 +10,9 @@ const Manager = ({ newManager }) => {
 
   const fetchManagers = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/allManager");
+      const response = await axios.get("http://localhost:5000/allManager", {
+        withCredentials: true,
+      });
       setManagers(response.data); // Set managers state with API response
       setLoading(false);
     } catch (error) {
@@ -36,7 +38,9 @@ const Manager = ({ newManager }) => {
 
   const deleteManager = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/deleteManager/${id}`);
+      await axios.delete(`http://localhost:5000/deleteManager/${id}`, {
+        withCredentials: true,
+      });
       setManagers((prevManagers) =>
         prevManagers.filter((manager) => manager._id !== id)
       ); ///use to update the data instantly in the webpage without reloading the whole page

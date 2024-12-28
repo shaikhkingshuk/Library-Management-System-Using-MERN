@@ -3,6 +3,37 @@ const user = require("../model/userModel");
 const book = require("../model/bookModel");
 const bcrypt = require("bcryptjs");
 const borrower = require("../model/recordModel");
+const session = require("express-session");
+
+const loginManager = async (req, res) => {
+  try {
+    const { name, password } = req.body;
+    //console.log(req.body);
+    const logManager = await manager.findOne({ name });
+    if (logManager && (await bcrypt.compare(password, logManager.password))) {
+      req.session.userID = logManager._id;
+
+      // use this pattern to recognized by react js
+      res.json({ success: true, message: "Login successful" });
+    } else {
+      res.status(200).send("session failed");
+    }
+  } catch (err) {
+    res.status(400).send(err);
+  }
+};
+
+//res.json({ success: true, message: "Login successful" })
+
+const logoutManager = async (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({ message: "Failed to logout" });
+    }
+    res.clearCookie("connect.sid"); // Clear the session cookie
+    res.status(200).json({ message: "Logout successful" });
+  });
+};
 
 const addManager = async (req, res) => {
   const { name, password, email, phone, address } = req.body;
@@ -190,4 +221,6 @@ module.exports = {
   deleteBook,
   updateBook,
   findBook,
+  loginManager,
+  logoutManager,
 };

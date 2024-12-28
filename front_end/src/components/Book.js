@@ -10,7 +10,9 @@ const Book = ({ newBook }) => {
 
   const fetchBooks = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/allBook");
+      const response = await axios.get("http://localhost:5000/allBook", {
+        withCredentials: true,
+      });
       setBooks(response.data); // Set books state with API response
       setLoading(false);
     } catch (error) {
@@ -36,7 +38,9 @@ const Book = ({ newBook }) => {
 
   const deleteBook = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/deleteBook/${id}`);
+      await axios.delete(`http://localhost:5000/deleteBook/${id}`, {
+        withCredentials: true,
+      });
       setBooks((prevBooks) => prevBooks.filter((book) => book._id !== id)); ///use to update the data instantly in the webpage without reloading the whole page
     } catch (error) {
       console.error("Error deleting book:", error);

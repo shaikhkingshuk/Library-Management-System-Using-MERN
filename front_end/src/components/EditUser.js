@@ -20,10 +20,13 @@ const EditUser = () => {
       //console.log(userValues);
       const response = await axios.put(
         `http://localhost:5000/updateUser/${id}`,
-        userValues
+        userValues,
+        {
+          withCredentials: true,
+        }
       );
       if (response.status === 200) {
-        navigate("/"); // after updating it will take to the userList page
+        navigate("/user"); // after updating it will take to the userList page
       } else {
         console.error("Failed to update user");
       }

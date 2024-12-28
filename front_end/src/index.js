@@ -11,10 +11,20 @@ import SearchManager from "./components/SearchManager";
 import EditBook from "./components/EditBook";
 import HandleBook from "./components/HandleBook";
 import SearchBook from "./components/SearchBook";
+import Login from "./components/Login";
+import Logout from "./components/Logout";
 
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <Login />,
+  },
+  {
+    path: "/logout",
+    element: <Logout />,
+  },
+  {
+    path: "/user",
     element: <App />,
   },
   {

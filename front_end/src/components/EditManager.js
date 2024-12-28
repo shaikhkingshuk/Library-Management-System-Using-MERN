@@ -20,7 +20,10 @@ const EditManager = () => {
       //console.log(managerValues);
       const response = await axios.put(
         `http://localhost:5000/updateManager/${id}`,
-        managerValues
+        managerValues,
+        {
+          withCredentials: true,
+        }
       );
       if (response.status === 200) {
         navigate("/manager"); // after updating it will take to the managerList page
