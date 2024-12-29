@@ -17,6 +17,8 @@ const AddManager = ({ onManagerAdded }) => {
   };
 
   const handleSubmit = async (e) => {
+    setError("");
+
     e.preventDefault();
     //console.log(managerValues);
     try {
@@ -29,12 +31,10 @@ const AddManager = ({ onManagerAdded }) => {
       );
       onManagerAdded(response.data);
       //console.log(response);
-    } catch (error) {
-      setError("Failed to submit data. Please try again later.");
+    } catch (e) {
+      setError(e.response.data.error);
     }
   };
-
-  if (error) return <p>{error}</p>;
 
   return (
     <div className="add-form">
@@ -45,33 +45,39 @@ const AddManager = ({ onManagerAdded }) => {
           placeholder="Name"
           name="name"
           onChange={(e) => handleChanges(e)}
+          required
         ></input>
         <input
           type="text"
           placeholder="Email"
           name="email"
           onChange={(e) => handleChanges(e)}
+          required
         ></input>
         <input
           type="password"
           placeholder="Password"
           name="password"
           onChange={(e) => handleChanges(e)}
+          required
         ></input>
         <input
           type="number"
           placeholder="Phone"
           name="phone"
           onChange={(e) => handleChanges(e)}
+          required
         ></input>
         <input
           type="text"
           placeholder="Address"
           name="address"
           onChange={(e) => handleChanges(e)}
+          required
         ></input>
         <button type="submit">Submit</button>
       </form>
+      {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
   );
 };

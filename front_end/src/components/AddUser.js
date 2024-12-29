@@ -17,6 +17,7 @@ const AddUser = ({ onUserAdded }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
     //console.log(userValues);
     try {
       const response = await axios.post(
@@ -28,12 +29,10 @@ const AddUser = ({ onUserAdded }) => {
       );
       onUserAdded(response.data);
       //console.log(response);
-    } catch (error) {
-      setError("Failed to submit data. Please try again later.");
+    } catch (e) {
+      setError(e.response.data.error);
     }
   };
-
-  if (error) return <p>{error}</p>;
 
   return (
     <div className="add-form">
@@ -44,27 +43,32 @@ const AddUser = ({ onUserAdded }) => {
           placeholder="Name"
           name="name"
           onChange={(e) => handleChanges(e)}
+          required
         ></input>
         <input
           type="text"
           placeholder="Email"
           name="email"
           onChange={(e) => handleChanges(e)}
+          required
         ></input>
         <input
           type="number"
           placeholder="Phone"
           name="phone"
           onChange={(e) => handleChanges(e)}
+          required
         ></input>
         <input
           type="text"
           placeholder="Address"
           name="address"
           onChange={(e) => handleChanges(e)}
+          required
         ></input>
         <button type="submit">Submit</button>
       </form>
+      {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
   );
 };

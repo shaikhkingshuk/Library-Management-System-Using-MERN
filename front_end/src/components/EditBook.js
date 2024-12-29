@@ -9,6 +9,7 @@ const EditBook = () => {
   const navigate = useNavigate();
   const { state } = useLocation(); // Access passed state
   const [bookValues, setBookValues] = useState(state || {});
+  const [error, setError] = useState("");
 
   const handleChanges = (e) => {
     setBookValues({ ...bookValues, [e.target.name]: e.target.value });
@@ -16,6 +17,7 @@ const EditBook = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
     try {
       //console.log(bookValues);
       const response = await axios.put(
@@ -27,11 +29,9 @@ const EditBook = () => {
       );
       if (response.status === 200) {
         navigate("/book"); // after updating it will take to the bookList page
-      } else {
-        console.error("Failed to update book");
       }
-    } catch (error) {
-      console.error("Error updating book:", error);
+    } catch (e) {
+      setError(e.response.data.error);
     }
   };
 
@@ -75,6 +75,7 @@ const EditBook = () => {
             Submit
           </button>
         </form>
+        {error && <p style={{ color: "red" }}>{error}</p>}
       </div>
     </div>
   );

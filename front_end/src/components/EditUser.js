@@ -9,6 +9,7 @@ const EditUser = () => {
   const navigate = useNavigate();
   const { state } = useLocation(); // Access passed state
   const [userValues, setUserValues] = useState(state || {});
+  const [error, setError] = useState("");
 
   const handleChanges = (e) => {
     setUserValues({ ...userValues, [e.target.name]: e.target.value });
@@ -16,6 +17,7 @@ const EditUser = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
     try {
       //console.log(userValues);
       const response = await axios.put(
@@ -27,11 +29,9 @@ const EditUser = () => {
       );
       if (response.status === 200) {
         navigate("/user"); // after updating it will take to the userList page
-      } else {
-        console.error("Failed to update user");
       }
-    } catch (error) {
-      console.error("Error updating user:", error);
+    } catch (e) {
+      setError(e.response.data.error);
     }
   };
 
@@ -86,6 +86,7 @@ const EditUser = () => {
             Submit
           </button>
         </form>
+        {error && <p style={{ color: "red" }}>{error}</p>}
       </div>
     </div>
   );

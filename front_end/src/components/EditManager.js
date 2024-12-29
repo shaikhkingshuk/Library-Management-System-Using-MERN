@@ -9,6 +9,7 @@ const EditManager = () => {
   const navigate = useNavigate();
   const { state } = useLocation(); // Access passed state
   const [managerValues, setManagerValues] = useState(state || {});
+  const [error, setError] = useState("");
 
   const handleChanges = (e) => {
     setManagerValues({ ...managerValues, [e.target.name]: e.target.value });
@@ -16,6 +17,7 @@ const EditManager = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
     try {
       //console.log(managerValues);
       const response = await axios.put(
@@ -27,11 +29,12 @@ const EditManager = () => {
       );
       if (response.status === 200) {
         navigate("/manager"); // after updating it will take to the managerList page
-      } else {
-        console.error("Failed to update manager");
       }
-    } catch (error) {
-      console.error("Error updating manager:", error);
+      if (response.status === 200) {
+        navigate("/manager");
+      }
+    } catch (e) {
+      setError(e.response.data.error);
     }
   };
 
@@ -86,6 +89,7 @@ const EditManager = () => {
             Submit
           </button>
         </form>
+        {error && <p style={{ color: "red" }}>{error}</p>}
       </div>
     </div>
   );

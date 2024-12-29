@@ -16,7 +16,8 @@ const SearchUser = () => {
     setError(null);
     try {
       const response = await axios.get("http://localhost:5000/searchUser", {
-        params: { q: query }, // Send search query as a parameter
+        params: { q: query },
+        withCredentials: true, // Send search query as a parameter
       });
       setSearchResults(response.data);
     } catch (err) {
@@ -55,6 +56,7 @@ const SearchUser = () => {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Enter name to search"
+              required
             />
             <button type="submit">Search</button>
           </form>

@@ -16,12 +16,13 @@ const SearchManager = () => {
     setError(null);
     try {
       const response = await axios.get("http://localhost:5000/searchManager", {
-        params: { q: query }, // Send search query as a parameter
+        params: { q: query },
+        withCredentials: true,
       });
       setSearchResults(response.data);
     } catch (err) {
       setError("Failed to search managers. Please try again.");
-      console.error(error);
+      //console.log(err);
     } finally {
       setLoading(false);
     }
@@ -55,6 +56,7 @@ const SearchManager = () => {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Enter name to search"
+              required
             />
             <button type="submit">Search</button>
           </form>

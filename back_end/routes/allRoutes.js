@@ -53,14 +53,14 @@ router.get("/searchUser", authMiddleware, findUser);
 
 /// Add Books
 
-router.post("/addBook", addBook);
+router.post("/addBook", authMiddleware, addBook);
 
-router.get("/allBook", allBook);
+router.get("/allBook", authMiddleware, allBook);
 
-router.delete("/deleteBook/:id", deleteBook);
+router.delete("/deleteBook/:id", authMiddleware, deleteBook);
 
-router.put("/updateBook/:id", updateBook);
+router.put("/updateBook/:id", authMiddleware, updateBook);
 
-router.get("/searchBook", findBook);
+router.get("/searchBook", authMiddleware, findBook);
 
 module.exports = router;

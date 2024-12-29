@@ -16,6 +16,7 @@ const AddBook = ({ onBookAdded }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
     //console.log(bookValues);
     try {
       const response = await axios.post(
@@ -27,12 +28,10 @@ const AddBook = ({ onBookAdded }) => {
       );
       onBookAdded(response.data);
       //console.log(response);
-    } catch (error) {
-      setError("Failed to submit data. Please try again later.");
+    } catch (e) {
+      setError(e.response.data.error);
     }
   };
-
-  if (error) return <p>{error}</p>;
 
   return (
     <div className="add-form">
@@ -43,22 +42,26 @@ const AddBook = ({ onBookAdded }) => {
           placeholder="Name"
           name="name"
           onChange={(e) => handleChanges(e)}
+          required
         ></input>
         <input
           type="text"
           placeholder="Author"
           name="author"
           onChange={(e) => handleChanges(e)}
+          required
         ></input>
         <input
           type="number"
           placeholder="Quantity"
           name="quantity"
           onChange={(e) => handleChanges(e)}
+          required
         ></input>
 
         <button type="submit">Submit</button>
       </form>
+      {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
   );
 };

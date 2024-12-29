@@ -4,14 +4,19 @@ import { useNavigate } from "react-router-dom";
 import "./login.css";
 
 function Login() {
+  const [userNameError, setuserNameError] = useState("");
+  const [userPassError, setuserPassError] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [name, setname] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setErrorMessage(""); // Reset error message
+    // Resetting error message
+    setErrorMessage("");
+    setuserNameError("");
+    setuserPassError("");
 
     try {
       const response = await axios.post(
@@ -22,9 +27,18 @@ function Login() {
         },
         { withCredentials: true }
       );
-      navigate("/user");
-    } catch (error) {
-      setErrorMessage("Error logging in. Please try again.");
+      if (response.status === 200) {
+        navigate("/user");
+      }
+    } catch (e) {
+      const err = e.response.data.error;
+      if (err === "username_mismatch") {
+        setuserNameError("Username not found");
+      } else if (err === "password_mismatch") {
+        setuserPassError("Incorrect password");
+      } else {
+        setErrorMessage("Internal server error...");
+      }
     }
   };
 
@@ -48,6 +62,7 @@ function Login() {
                 placeholder="Enter manager name"
                 required
               />
+              {userNameError && <p style={{ color: "red" }}>{userNameError}</p>}
             </div>
 
             <div className="inner-div">
@@ -60,6 +75,7 @@ function Login() {
                 placeholder="Enter password"
                 required
               />
+              {userPassError && <p style={{ color: "red" }}>{userPassError}</p>}
             </div>
 
             {errorMessage && <p>{errorMessage}</p>}
